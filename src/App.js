@@ -1,13 +1,16 @@
 const express = require("express");
 
 const app = express();
+const { adminAuth, userAuth } = require('./middlewares/Auth');
 
-app.use('/test', (req,res) => {
-    res.send("Hello from test");
+app.get('/admin/getAllData', adminAuth, (req,res) => {
+    // Store in DB
+    res.send("Get all data")
 });
 
-app.use('/profile', (req,res) => {
-    res.send("Hello from profile");
+app.get('/user', userAuth, (req,res) => {
+    // Store in DB
+    res.send("Get all user data")
 });
 
 app.listen(7777, () => {
